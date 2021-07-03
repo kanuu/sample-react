@@ -20,23 +20,20 @@
     let message = "メッセージを表示します。"
     
     var counter = 0
+    let el = (
+      <div>
+        <h4>{title}</h4>
+        <h6>{message}</h6>
+        <h5 className="alert alert-primary">
+          count: {counter}.
+        </h5>
+      </div>
+    )
     
-    let doAction = (event)=>{
+    setInterval(() => {
       counter++
-      let el = (
-        <div>
-          <h4>{title}</h4>
-          <h6>{message}</h6>
-          <h5 className="alert alert-primary"
-              onClick={doAction}>
-            count: {counter}.
-          </h5>
-        </div>
-      )
       ReactDOM.render(el, dom)
-    }
-    
-    doAction()
+    }, 1000);
     </script>
 </body>
 </html>
