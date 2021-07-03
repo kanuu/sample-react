@@ -15,28 +15,42 @@
   </div>
   <script type="text/babel">
     let dom = document.querySelector('#root')
-    
+
     let title = "React page."
-    let message = "メッセージを表示します。"
-    
-    var counter = 0
-    
-    let doAction = () => {
-      counter++
+    let message = "お名前をどうぞ。"
+    let in_val = '';
+
+    let doChange = (event)=>{
+      in_val = event.target.value
+      message = 'こんにちは, ' + in_val + 'さん!!'
+    }
+
+    let doAction = (event)=>{
       let el = (
         <div>
           <h4>{title}</h4>
           <h6>{message}</h6>
-          <h5 className="alert alert-primary"
-              onClick={doAction}>
-            count: {counter}.
-          </h5>
+          <div className="alert alert-primary">
+            <div className="form-group">
+              <label>Input:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="input"
+                onChange={doChange}
+              />
+            </div>
+            <button onClick={doAction} 
+                className="btn btn-primary">
+              Click
+            </button>
+          </div>
         </div>
       )
       ReactDOM.render(el, dom)
     }
-    
-    doAction()
-    </script>
+
+  doAction()
+  </script>
 </body>
 </html>
