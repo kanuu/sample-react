@@ -17,35 +17,26 @@
     let dom = document.querySelector('#root')
     
     let title = "React page."
-    let message = "データを表示します。"
+    let message = "メッセージを表示します。"
     
-    let data = {
-      url:'http://google.com',
-      title:'Google',
-      caption:'※これは、Googleの検索サイトです。'
+    var counter = 0
+    
+    let doAction = (event)=>{
+      counter++
+      let el = (
+        <div>
+          <h4>{title}</h4>
+          <h6>{message}</h6>
+          <h5 className="alert alert-primary"
+              onClick={doAction}>
+            count: {counter}.
+          </h5>
+        </div>
+      )
+      ReactDOM.render(el, dom)
     }
     
-    let el = (
-      <div>
-        <h4>{title}</h4>
-        <h6>{message}</h6>
-        {(() => 
-          <div className="card mt-4">
-            <div className="card-header">
-              {data.title}
-            </div>
-            <div className="card-body">
-              {data.caption}
-            </div>
-            <div className="card-footer">
-              <a href={data.url}>※{data.title}に移動</a>
-            </div>
-          </div>
-        )()}
-      </div>
-    )
-    
-    ReactDOM.render(el, dom)
+    doAction()
     </script>
 </body>
 </html>
