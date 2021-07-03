@@ -18,33 +18,20 @@
     
     let title = "React page."
     let message = "メッセージを表示します。"
+    let content = `※これが、trueのときに表示されるメッセージです。
+        ちゃんと表示されていますか？`
     
-    const msg = {
-      fontSize:"20pt",
-      fontWeight: "bold",
-      color:"red",
-      border:"2px solid green"
-    }
-    
-    let printMsg = function(msg, size, color){
-      const style = {
-        fontSize: size + "pt",
-        fontWeight:'700',
-        color: color,
-        border: "1px solid " + color
-      }
-      return <p style={style}>{msg}</p>
-    }
+    let flg = true; // ☆
     
     let el = (
       <div>
         <h4>{title}</h4>
         <h6>{message}</h6>
-        <div className="alert alert-secondary mt-3">
-          {printMsg('最初のメッセージ', 36, '#fff')}
-          {printMsg('次のメッセージです.', 24, '#aaa')}
-          {printMsg('最後のメッセージでした.', 12, '#666')}
+      {flg && 
+        <div className="alert alert-primary mt-3">
+          <p>{content}</p>
         </div>
+      }
       </div>
     )
     
