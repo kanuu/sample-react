@@ -6,10 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      title="アプリケーション"
-      message="これはアプリケーションコンポーネントです。"
-    />
+    <App title="描画します"/>
   </React.StrictMode>,
   document.getElementById('root')
 );
