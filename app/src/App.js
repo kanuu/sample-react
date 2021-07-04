@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Rect from './Rect'
+// import Rect from './Rect'
 
 import './App.css'
 
@@ -8,16 +8,18 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      msg: 'Hello component!',
-      count: 0,
+      counter: 0,
+      msg: 'count start!',
     }
 
-    let timer = setInterval(() => {
-      this.setState({
-        count: this.state.count + 1,
-        msg: "[ count: " + this.state.count + " ]"
-      })
-    }, 1000)
+    this.doAction = this.doAction.bind(this)
+  }
+
+  doAction(event) {
+    this.setState({
+      counter: this.state.counter + 1,
+      msg: "*** count: " + this.state.counter + " ***"
+    })
   }
 
   render() {
@@ -26,7 +28,12 @@ class App extends Component {
     <div className="container">
       <p className="subtitle">カウント数</p>
       <p className="alert alert-warning">{this.state.msg}</p>
-      <p className="alert alert-dark">{this.props.msg}</p>
+      <button
+        className="btn btn-primary"
+        onClick={this.doAction}
+      >
+        クリック
+      </button>
     </div>
   </div>
   }

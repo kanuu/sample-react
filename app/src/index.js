@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App title="描画します" msg="propsです"/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
