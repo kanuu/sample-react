@@ -1,51 +1,54 @@
 import React, { Component } from 'react'
-
-// import Rect from './Rect'
-
 import './App.css'
 
 class App extends Component {
-  constructor(props) {
+  data = []
+
+  area = {
+    width:"500px",
+    height:"500px",
+    border:"1px solid blue"
+  }
+
+  constructor(props){
     super(props)
     this.state = {
-      counter: 0,
-      msg: 'count start!',
-      flg: 0,
+      list:this.data
     }
-
     this.doAction = this.doAction.bind(this)
   }
 
-  doAction(event) {
+  doAction(e){
+    let x = e.pageX
+    let y = e.pageY
+    this.data.push({x:x, y:y})
     this.setState({
-      counter: this.state.counter + 1,
-      msg: this.state.counter,
-      flg: this.state.counter % 2 === 0,
+      list:this.data
     })
   }
 
-  render() {
-    return  <div>
-    <h1 className="bg-primary text-white display-4">React</h1>  
-    <div className="container">
-      <p className="subtitle">カウント数</p>
-      {this.state.flg ?
-        <div>
-          <p className="alert alert-warning">偶数: {this.state.msg}</p>
-        </div>
-      :
-        <div>
-          <p className="alert alert-warning">奇数：{this.state.msg}</p>
-        </div>
+  draw(d){
+    let s = {
+      position:"absolute",
+        left:(d.x - 25) + "px",
+        top:(d.y - 25) + "px",
+        width:"50px",
+        height:"50px",
+        backgroundColor:"#66f3",
       }
-      <button
-        className="btn btn-primary"
-        onClick={this.doAction}
-      >
-        クリック
-      </button>
+      return <div style={s}></div>
+  }
+  
+  render(){
+    return  <div>
+      <h1 className="bg-primary text-white display-4">React</h1>  
+      <div className="container">
+        <p className="subtitle">draw rectangle.</p>
+        <div style={this.area} onClick={this.doAction}>
+          {this.data.map((value)=>this.draw(value))}
+        </div>
+      </div>
     </div>
-  </div>
   }
 }
 
