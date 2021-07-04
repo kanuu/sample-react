@@ -17,34 +17,25 @@
   let dom = document.querySelector('#root')
   let message ="React component page."
   
-  // 関数コンポーネント
-  function Welcome(props) {
-    return <div className="alert alert-primary">
-      <Calc
-        classes={props.classes}
-        number={props.number}
-      />
-    </div>
+  
+  class Hello extends React.Component {
+    constructor(props) {
+      super(props)
+    }
+
+    render() {
+      return (
+        <div className="alert alert-primary">
+          <p className="h4">Hello!</p>
+        </div>
+      )
+    }
   }
 
-  function Calc(props) {
-    let total = 0
-    for(let i = 1; i <= props.number; i++) {
-      total += 1
-    }
-    return <p className={props.classes}>
-      1から{props.number}までの
-      合計は、「{total}」です。</p>
-  }
-  
-  // 表示するJSX
   let el = (
     <div>
       <h5 class="mb-4">{message}</h5>
-      <Welcome number="10" classes="h3" />
-      <Welcome number="100" classes="h3" />
-      <Welcome number="50" classes="h4" />
-      <Welcome number="500" classes="h5" />
+      <Hello />
     </div>
   )
   
