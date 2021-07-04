@@ -14,7 +14,12 @@ function CardMessage(props) {
 }
 
 function App() {
-  const [msg] = useState("This is sample messsage!")
+  const [msg, setMsg] = useState("This is sample messsage!")
+
+  const doAction = () => {
+    let res = window.prompt('入力してください。')
+    setMsg('Hello, ' + res + '!!')
+  }
   
   return (
     <div>
@@ -22,7 +27,15 @@ function App() {
       <div className="container">
         <h4 className="my-3">Hooks sample</h4>
         <AlertMessage message={msg} />
-        <CardMessage message={msg} />
+        <CardMessage message={msg}/>
+        <div className="text-center">
+          <button
+            onClick={doAction}
+            className="btn btn-primary"
+          >
+            Click
+          </button>
+        </div>
       </div>
     </div>
   )
