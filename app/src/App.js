@@ -8,7 +8,7 @@ function AlertMessage(props) {
 }
 
 function App() {
-  const [val, setVal] = useState(1000)
+  const [val, setVal] = useState(0)
   const [tax8, setTax8] = useState(0)
   const [tax10, setTax10] = useState(0)
   const [msg, setMsg] = useState(<p>set a price...</p>)
@@ -17,13 +17,13 @@ function App() {
     setVal(event.target.value)
   }
 
-  const doAction = () => {
+  useEffect(() => {
     let res = <div>
       <p>軽減税率(8%) ： {tax8} 円</p>
       <p>通常税率(10%)： {tax10} 円</p>
     </div>
     setMsg(res)
-  }
+  })
 
   useEffect(() => {
     setTax8(Math.floor(val * 1.08))
@@ -44,8 +44,6 @@ function App() {
           <input type="number" className="form-control" 
               onChange={doChange} />
         </div>
-        <button className="btn btn-primary" 
-            onClick={doAction}>Calc</button>
       </div>
     </div>
   )
