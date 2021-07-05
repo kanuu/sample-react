@@ -1,49 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
 
+const useTax = (t1, t2)=> {
+  const [price, setPrice] = useState(1000)
+  const [tx1] = useState(t1)
+  const [tx2] = useState(t2)
+
+  const tax = ()=> { 
+    return Math.floor(price * (1.0 + tx1 / 100))
+  }
+  const reduced = ()=> { 
+    return Math.floor(price * (1.0 + tx2 / 100))
+  }
+
+  return [price, tax, reduced, setPrice]
+}
+
 function AlertMessage(props) {
-  return <div className="alert alert-primary h5 text-primary">
-    <h5>{props.msg}</h5>
+  const [price, tax, reduced, setPrice] = useTax(10, 8)
+  
+  const DoChange = (e)=> {
+    let p = e.target.value
+    setPrice(p)
+  }
+
+  return <div className="alert alert-primary h5">
+    <p className="h5">通常税率: {tax()} 円.</p>
+    <p className="h5">軽減税率: {reduced()} 円.</p>
+    <div className="form-group">
+      <label className="form-group-label">Price:</label>
+      <input type="number" className="form-control"
+        onChange={DoChange} value={price} />
+    </div>
   </div>
 }
 
 function App() {
-  const [val, setVal] = useState(0)
-  const [tax8, setTax8] = useState(0)
-  const [tax10, setTax10] = useState(0)
-  const [msg, setMsg] = useState(<p>set a price...</p>)
-
-  const doChange = (event) => {
-    setVal(event.target.value)
-  }
-
-  useEffect(() => {
-    let res = <div>
-      <p>軽減税率(8%) ： {tax8} 円</p>
-      <p>通常税率(10%)： {tax10} 円</p>
-    </div>
-    setMsg(res)
-  }, [tax8, tax10])
-
-  useEffect(() => {
-    setTax8(Math.floor(val * 1.08))
-  })
-
-  useEffect(() => {
-    setTax10(Math.floor(val * 1.1))
-  })
-  
   return (
     <div>
       <h1 className="bg-primary text-white display-4 ">React</h1>
       <div className="container">
         <h4 className="my-3">Hooks sample</h4>
-        <AlertMessage msg={msg} />
-        <div className="form-group">
-          <label>Input:</label>
-          <input type="number" className="form-control" 
-              onChange={doChange} />
-        </div>
+        <AlertMessage />
       </div>
     </div>
   )
