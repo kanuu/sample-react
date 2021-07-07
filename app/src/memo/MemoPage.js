@@ -1,8 +1,8 @@
 import usePersist from '../Persist';
 import Memo from './Memo';
-import AddForm from './AddFrom';
-import FindForm from './FindFrom';
-import DelForm from './DelFrom';
+import AddForm from './AddForm';
+import FindForm from './FindForm';
+import DelForm from './DelForm';
 
 function MemoPage() {
   const [mode, setMode] = usePersist('mode', 'default')
@@ -20,4 +20,4 @@ function MemoPage() {
   )
 }
 
-export default App
+export default MemoPage
